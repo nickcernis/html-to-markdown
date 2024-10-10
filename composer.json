@@ -37,7 +37,7 @@
     "require-dev": {
         "mikehaertl/php-shellcommand": "^1.1.0",
         "phpstan/phpstan": "^1.8.8",
-        "phpunit/phpunit": "^8.5 || ^9.2",
+        "phpunit/phpunit": "^8.5 || ^9.2 || ^11.0",
         "scrutinizer/ocular": "^1.6",
         "unleashedtech/php-coding-standard": "^2.7 || ^3.0",
         "vimeo/psalm": "^4.22 || ^5.0"
