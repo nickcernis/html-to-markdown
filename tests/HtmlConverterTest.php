@@ -402,6 +402,7 @@ EOT;
         $this->assertHtmlGivesMarkdown($html, $markdown);
         $this->assertHtmlGivesMarkdown('<p>&gt; &gt; Look at me! &lt; &lt;</p>', '&gt; &gt; Look at me! &lt; &lt;');
         $this->assertHtmlGivesMarkdown('<p>&gt; &gt; <b>Look</b> at me! &lt; &lt;<br />&gt; Just look at me!</p>', "&gt; &gt; **Look** at me! &lt; &lt;  \n&gt; Just look at me!");
+        $this->assertHtmlGivesMarkdown('<p>Foo<br>=<br>Bar</p>', "Foo  \n\\=  \nBar");
         $this->assertHtmlGivesMarkdown('<p>Foo<br>--<br>Bar<br>Foo--</p>', "Foo  \n\\--  \nBar  \nFoo--");
         $this->assertHtmlGivesMarkdown('<ul><li>Foo<br>- Bar</li></ul>', "- Foo  \n    \\- Bar");
         $this->assertHtmlGivesMarkdown('Foo<br />* Bar', "Foo  \n\\* Bar");

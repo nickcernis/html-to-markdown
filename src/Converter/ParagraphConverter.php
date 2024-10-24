@@ -56,6 +56,7 @@ class ParagraphConverter implements ConverterInterface
             '~~~',
             '---',
             '- - -',
+            '=',
         ];
 
         foreach ($escapable as $i) {
