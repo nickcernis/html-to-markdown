@@ -61,7 +61,7 @@ The included `demo` directory contains an HTML->Markdown conversion form to try 
 
 ### Conversion options
 
-> [!CAUTION]  
+> [!CAUTION]
 > By default, this library preserves HTML tags without Markdown equivalents, like `<span>`, `<div>`, `<iframe>`, `<script>`, etc. If you will be parsing untrusted input from users, **please consider setting the `strip_tags` and/or `remove_nodes` options** documented below, and also using a library (like [HTML Purifier](https://github.com/ezyang/htmlpurifier)) to provide additional HTML filtering.
 
 To strip HTML tags that don't have a Markdown equivalent while preserving the content inside them, set `strip_tags` to true, like this:
@@ -194,6 +194,21 @@ $converter = new HtmlConverter();
 $converter->getEnvironment()->addConverter(new TableConverter());
 
 $html = "<table><tr><th>A</th></tr><tr><td>a</td></tr></table>";
+$markdown = $converter->convert($html);
+```
+
+### Strikethrough support
+
+Support for Markdown strikethrough is not enabled by default, because it is not part of the original Markdown syntax. To use strikethrough add the converter explicitly:
+
+```php
+use League\HTMLToMarkdown\HtmlConverter;
+use League\HTMLToMarkdown\Converter\StrikethroughConverter;
+
+$converter = new HtmlConverter();
+$converter->getEnvironment()->addConverter(new StrikethroughConverter());
+
+$html = "<del>Some Text</del> <strike>Some Text2<strike>";
 $markdown = $converter->convert($html);
 ```
 

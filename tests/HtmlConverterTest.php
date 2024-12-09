@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace League\HTMLToMarkdown\Test;
 
 use League\HTMLToMarkdown\Converter\ConverterInterface;
+use League\HTMLToMarkdown\Converter\StrikethroughConverter;
 use League\HTMLToMarkdown\Converter\TableConverter;
 use League\HTMLToMarkdown\Environment;
 use League\HTMLToMarkdown\HtmlConverter;
@@ -421,5 +422,16 @@ EOT;
         $htmlH4 = '<h4>Test</h4>';
         $result = $markdown->convert($htmlH4);
         $this->assertEquals($htmlH4, $result);
+    }
+
+    public function testStrikethrough(): void
+    {
+        $opt  = [];
+        $conv = [new StrikethroughConverter()];
+        $this->assertHtmlGivesMarkdown('<strike>Some Text</strike>', '~~Some Text~~', $opt, $conv);
+        $this->assertHtmlGivesMarkdown('<del>Some Text</del>', '~~Some Text~~', $opt, $conv);
+        $this->assertHtmlGivesMarkdown('<del>Some</del><del> Text</del>', '~~Some Text~~', $opt, $conv);
+        $this->assertHtmlGivesMarkdown('<del>Some</del><strike> Text</strike>', '~~Some Text~~', $opt, $conv);
+        $this->assertHtmlGivesMarkdown('<del>Some</del> <strike>Text</strike>', '~~Some~~ ~~Text~~', $opt, $conv);
     }
 }
